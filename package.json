@@ -1,0 +1,29 @@
+{
+  "name": "axel-playwright-portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "test": "npx playwright test",
+  "test:staging": "ENV=staging npx playwright test",
+  "test:production": "ENV=production npx playwright test",
+  "test:headed": "npx playwright test --headed",
+  "test:ui": "npx playwright test --ui",
+  "report": "npx playwright show-report",
+  "lint": "eslint . --ext .ts",
+  "docker:build": "docker build -t project-1-e2e .",
+  "docker:run": "docker compose up --abort-on-container-exit",
+  "docker:clean": "docker compose down --volumes",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@cucumber/cucumber": "^12.7.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0",
+    "allure-playwright": "^3.6.0",
+    "typescript": "^5.9.3"
+  }
+}
