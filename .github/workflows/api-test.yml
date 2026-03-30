@@ -1,0 +1,41 @@
+name: Toolshop API Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Newman and reporters
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+
+      - name: Inject credentials into environment file
+        run: |
+          sed -i 's/"adminEmail", "value": ""/"adminEmail", "value": "${{ secrets.ADMIN_EMAIL }}"/g' environments/toolshop-ci.json
+          sed -i 's/"adminPassword", "value": ""/"adminPassword", "value": "${{ secrets.ADMIN_PASSWORD }}"/g' environments/toolshop-ci.json
+
+      - name: Run API tests
+        run: npm run test:ci
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-test-report
+          path: reports/results.xml
