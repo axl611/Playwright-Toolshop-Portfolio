@@ -1,0 +1,8 @@
+# Reports are generated at runtime
+reports/*.html
+
+# Node modules
+node_modules/
+
+# If you have a local env file with real credentials
+environments/toolshop-dev-local.json
