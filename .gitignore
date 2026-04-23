@@ -6,3 +6,34 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.staging
+.env.production
+
+# Playwright output
+test-results/
+playwright-report/
+allure-results/
+allure-report/
+screenshots/
+
+# Auth state files
+.auth/
+
+# TypeScript compiled output
+dist/
+
+# Docker
+.docker/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
