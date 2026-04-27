@@ -1,4 +1,4 @@
-import {Page, Locator} from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import { BaseComponent } from './components/BaseComponent';
 
 export class LoginPage extends BaseComponent {
@@ -18,16 +18,34 @@ export class LoginPage extends BaseComponent {
 
     }
 
-protected async goto(page: Page): Promise<void>{
-    await this.page.goto('/auth/login')
+async goto(): Promise<void>{
+    await this.navigate('/auth/login');
+    await this.waitForElement(this.emailInput);
+   
 
 }
 
-protected async login(page: Page): Promise<void>{
-    await this.page.emailInput.fill('axl611@gmail.com');
-    await this.page.passwordInput.fill('password');
-    await this.page.loginButton.click();
+async login(email: string, password: string): Promise<void>{
+    await this.fillField(this.emailInput, email);
+    await this.fillField(this.passwordInput, password);
+    await this.clickElement(this.loginButton);
 
+}
+
+async getErrorMessageEmail(): Promise<string> {
+    return await this.getText(this.errorMessageEmail);
+}
+
+async getErrorMessagePassword(): Promise<string> {
+    return await this.getText(this.errorMessagePassword);
+}
+
+async isEmailErrorVisible(): Promise<boolean> {
+    return await this.isVisible(this.errorMessageEmail);
+}
+
+async isPasswordErrorVisible(): Promise<boolean> {
+    return await this.isVisible(this.errorMessagePassword);
 }
 
 }

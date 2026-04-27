@@ -30,11 +30,11 @@ export class BaseComponent {
     }
 
     protected async isVisible(locator: Locator): Promise<boolean> {
-    return await locator.isVisible();
+        return await locator.isVisible();
     }
 
     protected async navigate(path: string): Promise<void> {
-    await this.page.goto(path);
+        await this.page.goto(path);
     }
 
 }
