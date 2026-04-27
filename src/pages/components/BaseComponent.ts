@@ -2,7 +2,9 @@ import { Page, Locator } from '@playwright/test';
 
 export class BaseComponent {
     
-    constructor(protected page: Page) {}
+    constructor(protected page: Page) {
+
+    }
 
     protected async waitForElement(locator: Locator): Promise<void> {
         await locator.waitFor({ state: 'visible' });
@@ -34,4 +36,5 @@ export class BaseComponent {
     protected async navigate(path: string): Promise<void> {
         await this.page.goto(path);
     }
+
 }

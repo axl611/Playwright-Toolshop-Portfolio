@@ -1,39 +1,8 @@
+# Reports are generated at runtime
+reports/*.html
 
-# Playwright
-node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
-
-# Dependencies
+# Node modules
 node_modules/
 
-# Environment files
-.env
-.env.staging
-.env.production
-
-# Playwright output
-test-results/
-playwright-report/
-allure-results/
-allure-report/
-screenshots/
-
-# Auth state files
-.auth/
-
-# TypeScript compiled output
-dist/
-
-# Docker
-.docker/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# VS Code
-.vscode/
+# If you have a local env file with real credentials
+environments/toolshop-dev-local.json
