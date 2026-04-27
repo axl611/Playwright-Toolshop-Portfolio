@@ -7,6 +7,7 @@ export class LoginPage extends BaseComponent {
     private readonly loginButton: Locator;
     private readonly errorMessageEmail: Locator;
     private readonly errorMessagePassword: Locator;
+    private readonly errorMessageLogin: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -15,6 +16,7 @@ export class LoginPage extends BaseComponent {
         this.loginButton = page.getByTestId('login-submit');
         this.errorMessageEmail = page.getByTestId('email-error');
         this.errorMessagePassword = page.getByTestId('password-error');
+        this.errorMessageLogin = page.getByTestId('login-error');
 
     }
 
@@ -32,12 +34,17 @@ async login(email: string, password: string): Promise<void>{
 
 }
 
+
 async getErrorMessageEmail(): Promise<string> {
     return await this.getText(this.errorMessageEmail);
 }
 
 async getErrorMessagePassword(): Promise<string> {
     return await this.getText(this.errorMessagePassword);
+}
+
+async getErrorMessageLogin(): Promise<string> {
+    return await this.getText(this.errorMessageLogin)
 }
 
 async isEmailErrorVisible(): Promise<boolean> {
@@ -48,4 +55,9 @@ async isPasswordErrorVisible(): Promise<boolean> {
     return await this.isVisible(this.errorMessagePassword);
 }
 
+async isLoginErrorVisible(): Promise<boolean> {
+    await this.waitForElement(this.errorMessageLogin);
+    return await this.isVisible(this.errorMessageLogin);
+    
+}
 }
