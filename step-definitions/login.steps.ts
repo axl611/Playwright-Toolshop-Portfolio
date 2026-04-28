@@ -3,6 +3,7 @@ import { LoginPage } from '@pages/LoginPage';
 import { users } from '@data/users';
 import { expect } from '@playwright/test';
 
+
 const { Given, When, Then } = createBdd();
 let loginPage: LoginPage;
 
@@ -11,7 +12,7 @@ Given('The user is in the login page', async ({ page }) => {
     await loginPage.goto();
 });
 
-When('They input valid credentials', async ({ page }) => {
+When('They input valid credentials', async ({  }) => {
     await loginPage.login(users.customer.email, users.customer.password)
 });
 
@@ -22,7 +23,7 @@ Then('User is logged and redirected to the dashboard', async ({ page }) => {
 
 
 
-When('They dont input any credentials', async ({ page }) => {
+When('They dont input any credentials', async ({  }) => {
     await loginPage.login('', '')
 });
 
@@ -32,6 +33,6 @@ Then('The system displays an error message', async ({ page }) => {
 });
 
 
-When('They input invalid credentials', async ({ page }) => {
+When('They input invalid credentials', async ({  }) => {
     await loginPage.login(users.invalid.email, users.invalid.password)
 });

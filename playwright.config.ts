@@ -22,15 +22,37 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-      testDir: './tests',
+  // runs setup files first
+  {
+    name: 'setup',
+    testMatch: /.*\.setup\.ts/,
+    testDir: './tests/auth',
+  },
+  // all tests run here — tags handle scoping
+  {
+    name: 'chromium',
+    use: {
+      ...devices['Desktop Chrome'],
+      storageState: '.auth/customer.json',
     },
-    {
-      name: 'bdd-chromium',
-      use: { ...devices['Desktop Chrome'] },
-      testDir: bddTestDir,
+    testDir: './tests/e2e',
+    dependencies: ['setup'],
+  },
+  // login tests — no auth needed
+  {
+    name: 'chromium-no-auth',
+    use: { ...devices['Desktop Chrome'] },
+    testDir: './tests/auth-tests',
+  },
+  // BDD tests
+  {
+    name: 'bdd-chromium',
+    use: {
+      ...devices['Desktop Chrome'],
+      storageState: '.auth/customer.json',
     },
-  ],
+    testDir: bddTestDir,
+    dependencies: ['setup'],
+  },
+],
 });

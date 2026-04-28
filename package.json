@@ -13,7 +13,11 @@
     "lint": "eslint . --ext .ts",
     "docker:build": "docker build -t project-1-e2e .",
     "docker:run": "docker compose up --abort-on-container-exit",
-    "docker:clean": "docker compose down --volumes"
+    "docker:clean": "docker compose down --volumes",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:happy-path": "playwright test --grep @happy-path",
+    "test:negative": "playwright test --grep @negative"
   },
   "repository": {
     "type": "git",

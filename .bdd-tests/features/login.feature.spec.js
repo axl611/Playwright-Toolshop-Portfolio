@@ -5,19 +5,19 @@ test.describe('User Authentication', () => {
 
   test('User tries to login with valid credentials', { tag: ['@smoke', '@sanity', '@happy-path'] }, async ({ Given, When, Then, page }) => { 
     await Given('The user is in the login page', null, { page }); 
-    await When('They input valid credentials', null, { page }); 
+    await When('They input valid credentials'); 
     await Then('User is logged and redirected to the dashboard', null, { page }); 
   });
 
   test('User tries to login with empty fields', { tag: ['@smoke', '@sanity', '@negative'] }, async ({ Given, When, Then, page }) => { 
     await Given('The user is in the login page', null, { page }); 
-    await When('They dont input any credentials', null, { page }); 
+    await When('They dont input any credentials'); 
     await Then('The system displays an error message', null, { page }); 
   });
 
   test('User tries to login with invalid credentials', { tag: ['@smoke', '@sanity', '@negative'] }, async ({ Given, When, Then, page }) => { 
     await Given('The user is in the login page', null, { page }); 
-    await When('They input invalid credentials', null, { page }); 
+    await When('They input invalid credentials'); 
     await Then('The system displays an error message', null, { page }); 
   });
 
