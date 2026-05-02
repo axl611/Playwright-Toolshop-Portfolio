@@ -27,11 +27,6 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Debug - check if site is reachable
-        run: curl -I https://practicesoftwaretesting.com/auth/login
-        env:
-          CI: true    
-
       - name: Generate BDD tests
         run: npx bddgen
         env:
