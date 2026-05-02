@@ -10,6 +10,12 @@ const bddTestDir = defineBddConfig({
   outputDir: '.bdd-tests',
 });
 
+const bddNoAuthTestDir = defineBddConfig({
+  features: 'features/auth/**/*.feature',
+  steps: 'step-definitions/**/*.ts',
+  outputDir: '.bdd-tests/no-auth',
+});
+
 export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -54,5 +60,13 @@ export default defineConfig({
     testDir: bddTestDir,
     dependencies: ['setup'],
   },
+
+  {
+  name: 'bdd-chromium-no-auth',
+  use: { ...devices['Desktop Chrome'] },
+  testDir: bddNoAuthTestDir,
+},
+
+
 ],
 });
